@@ -1,4 +1,4 @@
-# Generated from .\source\PAM.g4 by ANTLR 4.9.2
+# Generated from .\source\IMP.g4 by ANTLR 4.9.2
 from antlr4 import *
 from gen.PAMParser import PAMParser
 from gen.PAMVisitor import PAMVisitor
