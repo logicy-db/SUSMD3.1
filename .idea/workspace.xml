@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42f90ef2-61ce-418a-87a0-2ac85e891d8e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/source/CustomIMPVisitor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/CustomVisitor.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/CustomVisitor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/IMP.g4" beforeDir="false" afterPath="$PROJECT_DIR$/source/IMP.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/source/input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/CustomIMPVisitor.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/CustomIMPVisitor.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +91,7 @@
       <workItem from="1650696532202" duration="3867000" />
       <workItem from="1650782797368" duration="7175000" />
       <workItem from="1650798325854" duration="1044000" />
-      <workItem from="1650884422313" duration="3691000" />
+      <workItem from="1650884422313" duration="6249000" />
     </task>
     <servers />
   </component>
@@ -121,10 +117,15 @@
           <line>1</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/source/CustomIMPVisitor.py</url>
+          <line>84</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/SUSMD3_1$main.coverage" NAME="main Coverage Results" MODIFIED="1650888401694" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SUSMD3_1$main.coverage" NAME="main Coverage Results" MODIFIED="1650891042672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

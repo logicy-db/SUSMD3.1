@@ -1,1 +1,1 @@
-if a > b then x:= 1 else skip fi
+if a > b then x:= 1 else skip fi; x:=3

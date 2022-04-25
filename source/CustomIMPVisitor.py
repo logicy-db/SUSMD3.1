@@ -1,9 +1,8 @@
 # Generated from .\source\IMP.g4 by ANTLR 4.9.2
 from antlr4 import *
-from gen.IMPParser import IMPParser
 from gen.IMPVisitor import IMPVisitor
 from antlr4.tree.Tree import TerminalNode
-
+from gen.IMPParser import IMPParser
 
 # This class defines a complete generic visitor for a parse tree produced by IMPParser.
 
@@ -65,14 +64,25 @@ class CustomIMPVisitor(ParseTreeVisitor):
     
     # Visit a parse tree produced by IMPParser#progr.
     def visitProgr(self, ctx: IMPParser.ProgrContext):
-        print(self.visitChildren(ctx))
+        self.visitChildren(ctx)
+        print(' '.join(self.AM_CODE))
 
     # Visit a parse tree produced by IMPParser#series.
     def visitSeries(self, ctx: IMPParser.SeriesContext):
-        # program = self.visitChildren(ctx)
-        program = self.visitChildren(ctx)
-        print(program)
-        return self.visitChildren(ctx)
+        from gen.IMPParser import IMPParser # TODO: fix the import
+
+        program = []
+        for i in range(ctx.getChildCount()):
+            if not isinstance(ctx.getChild(i), TerminalNode):
+                program.append(str(self.visit(ctx.getChild(i))))
+            else:
+                program.append(str(ctx.getChild(i)))
+
+        program = ' '.join(program)
+        if isinstance(ctx.parentCtx, IMPParser.ProgrContext):
+            self.AM_CODE.append(program)
+
+        return program
 
     # Visit a parse tree produced by IMPParser#stmt.
     def visitStmt(self, ctx: IMPParser.StmtContext):
