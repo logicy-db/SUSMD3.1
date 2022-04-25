@@ -1,7 +1,7 @@
 grammar IMP;
 progr     :  series NEWLINE;
 series    :  stmt (';' stmt)*;
-stmt      :  assign_stmt | cond_stmt | loop;
+stmt      :  assign_stmt | cond_stmt | loop | SKIPPER;
 assign_stmt    :  VARNAME ':=' expr;
 cond_stmt  :  'if' (logical_expr) 'then' series ('else' series)?  'fi';
 loop      :  'while' (logical_expr) 'do' series 'end';
@@ -21,5 +21,6 @@ RELATION   :  '≠' | '≤' | '≥'| '=' |  '<' | '>'  ;
 NUMBER    :  [0-9][0-9]* ;
 NEG : '¬';
 BOOL : 'true' | 'false';
+SKIPPER : 'skip';
 VARNAME    :  ([a-z]|[A-Z]|'_') ([a-z]|[A-Z]|[0-9]|'_')*;
 WS            :          [ \t\r\n]+ -> skip;

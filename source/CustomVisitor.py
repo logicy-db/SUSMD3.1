@@ -1,13 +1,13 @@
 # Generated from .\source\IMP.g4 by ANTLR 4.9.2
 from antlr4 import *
-from gen.PAMParser import PAMParser
-from gen.PAMVisitor import PAMVisitor
+from gen.IMPParser import IMPParser
+from gen.IMPVisitor import IMPVisitor
 from antlr4.tree.Tree import TerminalNode
 import operator
 
 
-# Visitor for PAM language.
-class CustomVisitor(PAMVisitor):
+# Visitor for IMP language.
+class CustomVisitor(IMPVisitor):
     variables = {}  # Storing the variable values
     data_values = []  # Storing data.txt values
     ops = {
@@ -32,8 +32,8 @@ class CustomVisitor(PAMVisitor):
             for val in read_data:
                 self.data_values.append(int(val))
 
-    # Visit a parse tree produced by PAMParser#input_stmt.
-    def visitInput_stmt(self, ctx: PAMParser.Input_stmtContext):
+    # Visit a parse tree produced by IMPParser#input_stmt.
+    def visitInput_stmt(self, ctx: IMPParser.Input_stmtContext):
         # input_stmt: 'read' varlist;
         varlist = self.visitChildren(ctx)  # visitVarlist
 
@@ -41,20 +41,20 @@ class CustomVisitor(PAMVisitor):
             self.variables[var] = int(self.data_values[0])
             self.data_values.pop(0)
 
-    # Visit a parse tree produced by PAMParser#output_stmt.
-    def visitOutput_stmt(self, ctx: PAMParser.Output_stmtContext):
+    # Visit a parse tree produced by IMPParser#output_stmt.
+    def visitOutput_stmt(self, ctx: IMPParser.Output_stmtContext):
         varlist = self.visitChildren(ctx)
 
         for var in varlist:
             print(var + ": " + str(self.variables.get(var)))
 
-    # Visit a parse tree produced by PAMParser#assign_stmt.
-    def visitAssign_stmt(self, ctx: PAMParser.Assign_stmtContext):
+    # Visit a parse tree produced by IMPParser#assign_stmt.
+    def visitAssign_stmt(self, ctx: IMPParser.Assign_stmtContext):
         # assign_stmt : VARNAME ':=' (logical_expr|expr);
         self.variables[str(ctx.getChild(0))] = self.visit(ctx.getChild(2))
 
-    # Visit a parse tree produced by PAMParser#cond_stmt.
-    def visitCond_stmt(self, ctx: PAMParser.Cond_stmtContext):
+    # Visit a parse tree produced by IMPParser#cond_stmt.
+    def visitCond_stmt(self, ctx: IMPParser.Cond_stmtContext):
         # cond_stmt : 'if' (logical_expr) 'then' series ('else' series)? 'fi';
         exeCond = self.visit(ctx.getChild(1))
 
@@ -65,31 +65,22 @@ class CustomVisitor(PAMVisitor):
             if ctx.getChild(5) != None:
                 return self.visit(ctx.getChild(5))
 
-    # Visit a parse tree produced by PAMParser#loop.
-    def visitLoop(self, ctx: PAMParser.LoopContext):
+    # Visit a parse tree produced by IMPParser#loop.
+    def visitLoop(self, ctx: IMPParser.LoopContext):
         # loop : 'while' (logical_expr) 'do' series 'end';
         while self.visit(ctx.getChild(1)):
             self.visit(ctx.getChild(3))
 
-    # Visit a parse tree produced by PAMParser#compar.
-    def visitCompar(self, ctx: PAMParser.ComparContext):
+    # Visit a parse tree produced by IMPParser#compar.
+    def visitCompar(self, ctx: IMPParser.ComparContext):
         # compar : expr RELATION expr;
         elem1 = self.visit(ctx.getChild(0))
         elem2 = self.visit(ctx.getChild(2))
 
         return self.ops[str(ctx.getChild(1))](elem1, elem2)
 
-    # Visit a parse tree produced by PAMParser#varlist.
-    def visitVarlist(self, ctx: PAMParser.VarlistContext):
-        # varlist : VARNAME (',' VARNAME)*;
-        varlist = []
-        for i in range(0, ctx.getChildCount(), 2):
-            varlist.append(str(ctx.getChild(i)))
-
-        return varlist
-
-    # Visit a parse tree produced by PAMParser#expr.
-    def visitExpr(self, ctx: PAMParser.ExprContext):
+    # Visit a parse tree produced by IMPParser#expr.
+    def visitExpr(self, ctx: IMPParser.ExprContext):
         # expr : term (WEAKOP term)*;
         if ctx.getChildCount() == 1:
             return self.visitChildren(ctx)
@@ -99,8 +90,8 @@ class CustomVisitor(PAMVisitor):
 
         return round(self.ops[str(ctx.getChild(1))](elem1, elem2))
 
-    # Visit a parse tree produced by PAMParser#term.
-    def visitTerm(self, ctx: PAMParser.TermContext):
+    # Visit a parse tree produced by IMPParser#term.
+    def visitTerm(self, ctx: IMPParser.TermContext):
         # term : elem (STRONGOP elem)*;
         if ctx.getChildCount() == 1:
             return self.visitChildren(ctx)
@@ -110,8 +101,8 @@ class CustomVisitor(PAMVisitor):
 
         return round(self.ops[str(ctx.getChild(1))](elem1, elem2))
 
-    # Visit a parse tree produced by PAMParser#elem.
-    def visitElem(self, ctx: PAMParser.ElemContext):
+    # Visit a parse tree produced by IMPParser#elem.
+    def visitElem(self, ctx: IMPParser.ElemContext):
         # elem : NUMBER | VARNAME | '(' expr ')';
         if ctx.getChildCount() != 1:
             # if contains parenthesis
@@ -124,8 +115,8 @@ class CustomVisitor(PAMVisitor):
 
         return self.variables.get(elem)
 
-    # Visit a parse tree produced by PAMParser#logical_expr.
-    def visitLogical_expr(self, ctx: PAMParser.Logical_exprContext):
+    # Visit a parse tree produced by IMPParser#logical_expr.
+    def visitLogical_expr(self, ctx: IMPParser.Logical_exprContext):
         # logical_expr :  logical_term (WEAKBOOL logical_term)*;
         if ctx.getChildCount() == 1:
             return self.visitChildren(ctx)
@@ -135,8 +126,8 @@ class CustomVisitor(PAMVisitor):
 
         return elem1 or elem2
 
-    # Visit a parse tree produced by PAMParser#logical_term.
-    def visitLogical_term(self, ctx: PAMParser.Logical_termContext):
+    # Visit a parse tree produced by IMPParser#logical_term.
+    def visitLogical_term(self, ctx: IMPParser.Logical_termContext):
         # logical_term : logical_elem (STRONGBOOL logical_elem)*;
         if ctx.getChildCount() == 1:
             return self.visitChildren(ctx)
@@ -146,8 +137,8 @@ class CustomVisitor(PAMVisitor):
 
         return elem1 and elem2
 
-    # Visit a parse tree produced by PAMParser#logical_elem.
-    def visitLogical_elem(self, ctx: PAMParser.Logical_elemContext):
+    # Visit a parse tree produced by IMPParser#logical_elem.
+    def visitLogical_elem(self, ctx: IMPParser.Logical_elemContext):
         # logical_elem : (NEG)*? (compar|BOOL|VARNAME|'(' logical_expr ')');
         # NOT
 
@@ -209,4 +200,4 @@ class CustomVisitor(PAMVisitor):
         return self.variables.get(elem)
 
 
-del PAMParser
+del IMPParser
