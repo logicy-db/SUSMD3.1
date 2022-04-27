@@ -12,44 +12,43 @@ else:
 def serializedATN():
     with StringIO() as buf:
         buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\31")
-        buf.write("}\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b")
+        buf.write("{\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b")
         buf.write("\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16\t")
         buf.write("\16\3\2\3\2\3\2\3\3\3\3\3\3\7\3#\n\3\f\3\16\3&\13\3\3")
         buf.write("\4\3\4\3\4\3\4\5\4,\n\4\3\5\3\5\3\5\3\5\3\6\3\6\3\6\3")
-        buf.write("\6\3\6\3\6\5\68\n\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\3")
-        buf.write("\b\3\b\3\b\3\b\3\t\3\t\3\t\7\tI\n\t\f\t\16\tL\13\t\3\n")
-        buf.write("\3\n\3\n\7\nQ\n\n\f\n\16\nT\13\n\3\13\3\13\3\13\3\13\3")
-        buf.write("\13\3\13\5\13\\\n\13\3\f\3\f\3\f\7\fa\n\f\f\f\16\fd\13")
-        buf.write("\f\3\r\3\r\3\r\7\ri\n\r\f\r\16\rl\13\r\3\16\7\16o\n\16")
-        buf.write("\f\16\16\16r\13\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16")
-        buf.write("\5\16{\n\16\3\16\3p\2\17\2\4\6\b\n\f\16\20\22\24\26\30")
-        buf.write("\32\2\2\2~\2\34\3\2\2\2\4\37\3\2\2\2\6+\3\2\2\2\b-\3\2")
-        buf.write("\2\2\n\61\3\2\2\2\f;\3\2\2\2\16A\3\2\2\2\20E\3\2\2\2\22")
-        buf.write("M\3\2\2\2\24[\3\2\2\2\26]\3\2\2\2\30e\3\2\2\2\32p\3\2")
-        buf.write("\2\2\34\35\5\4\3\2\35\36\7\20\2\2\36\3\3\2\2\2\37$\5\6")
-        buf.write("\4\2 !\7\3\2\2!#\5\6\4\2\" \3\2\2\2#&\3\2\2\2$\"\3\2\2")
-        buf.write("\2$%\3\2\2\2%\5\3\2\2\2&$\3\2\2\2\',\5\b\5\2(,\5\n\6\2")
-        buf.write("),\5\f\7\2*,\7\27\2\2+\'\3\2\2\2+(\3\2\2\2+)\3\2\2\2+")
-        buf.write("*\3\2\2\2,\7\3\2\2\2-.\7\30\2\2./\7\4\2\2/\60\5\20\t\2")
-        buf.write("\60\t\3\2\2\2\61\62\7\5\2\2\62\63\5\26\f\2\63\64\7\6\2")
-        buf.write("\2\64\67\5\4\3\2\65\66\7\7\2\2\668\5\4\3\2\67\65\3\2\2")
-        buf.write("\2\678\3\2\2\289\3\2\2\29:\7\b\2\2:\13\3\2\2\2;<\7\t\2")
-        buf.write("\2<=\5\26\f\2=>\7\n\2\2>?\5\4\3\2?@\7\13\2\2@\r\3\2\2")
-        buf.write("\2AB\5\20\t\2BC\7\23\2\2CD\5\20\t\2D\17\3\2\2\2EJ\5\22")
-        buf.write("\n\2FG\7\21\2\2GI\5\22\n\2HF\3\2\2\2IL\3\2\2\2JH\3\2\2")
-        buf.write("\2JK\3\2\2\2K\21\3\2\2\2LJ\3\2\2\2MR\5\24\13\2NO\7\22")
-        buf.write("\2\2OQ\5\24\13\2PN\3\2\2\2QT\3\2\2\2RP\3\2\2\2RS\3\2\2")
-        buf.write("\2S\23\3\2\2\2TR\3\2\2\2U\\\7\24\2\2V\\\7\30\2\2WX\7\f")
-        buf.write("\2\2XY\5\20\t\2YZ\7\r\2\2Z\\\3\2\2\2[U\3\2\2\2[V\3\2\2")
-        buf.write("\2[W\3\2\2\2\\\25\3\2\2\2]b\5\30\r\2^_\7\17\2\2_a\5\30")
-        buf.write("\r\2`^\3\2\2\2ad\3\2\2\2b`\3\2\2\2bc\3\2\2\2c\27\3\2\2")
-        buf.write("\2db\3\2\2\2ej\5\32\16\2fg\7\16\2\2gi\5\32\16\2hf\3\2")
-        buf.write("\2\2il\3\2\2\2jh\3\2\2\2jk\3\2\2\2k\31\3\2\2\2lj\3\2\2")
-        buf.write("\2mo\7\25\2\2nm\3\2\2\2or\3\2\2\2pq\3\2\2\2pn\3\2\2\2")
-        buf.write("qz\3\2\2\2rp\3\2\2\2s{\5\16\b\2t{\7\26\2\2u{\7\30\2\2")
-        buf.write("vw\7\f\2\2wx\5\26\f\2xy\7\r\2\2y{\3\2\2\2zs\3\2\2\2zt")
-        buf.write("\3\2\2\2zu\3\2\2\2zv\3\2\2\2{\33\3\2\2\2\f$+\67JR[bjp")
-        buf.write("z")
+        buf.write("\6\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\3\b\3\b\3\b")
+        buf.write("\3\b\3\t\3\t\3\t\7\tG\n\t\f\t\16\tJ\13\t\3\n\3\n\3\n\7")
+        buf.write("\nO\n\n\f\n\16\nR\13\n\3\13\3\13\3\13\3\13\3\13\3\13\5")
+        buf.write("\13Z\n\13\3\f\3\f\3\f\7\f_\n\f\f\f\16\fb\13\f\3\r\3\r")
+        buf.write("\3\r\7\rg\n\r\f\r\16\rj\13\r\3\16\7\16m\n\16\f\16\16\16")
+        buf.write("p\13\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\5\16y\n\16")
+        buf.write("\3\16\3n\2\17\2\4\6\b\n\f\16\20\22\24\26\30\32\2\2\2{")
+        buf.write("\2\34\3\2\2\2\4\37\3\2\2\2\6+\3\2\2\2\b-\3\2\2\2\n\61")
+        buf.write("\3\2\2\2\f9\3\2\2\2\16?\3\2\2\2\20C\3\2\2\2\22K\3\2\2")
+        buf.write("\2\24Y\3\2\2\2\26[\3\2\2\2\30c\3\2\2\2\32n\3\2\2\2\34")
+        buf.write("\35\5\4\3\2\35\36\7\20\2\2\36\3\3\2\2\2\37$\5\6\4\2 !")
+        buf.write("\7\3\2\2!#\5\6\4\2\" \3\2\2\2#&\3\2\2\2$\"\3\2\2\2$%\3")
+        buf.write("\2\2\2%\5\3\2\2\2&$\3\2\2\2\',\5\b\5\2(,\5\n\6\2),\5\f")
+        buf.write("\7\2*,\7\27\2\2+\'\3\2\2\2+(\3\2\2\2+)\3\2\2\2+*\3\2\2")
+        buf.write("\2,\7\3\2\2\2-.\7\30\2\2./\7\4\2\2/\60\5\20\t\2\60\t\3")
+        buf.write("\2\2\2\61\62\7\5\2\2\62\63\5\26\f\2\63\64\7\6\2\2\64\65")
+        buf.write("\5\4\3\2\65\66\7\7\2\2\66\67\5\4\3\2\678\7\b\2\28\13\3")
+        buf.write("\2\2\29:\7\t\2\2:;\5\26\f\2;<\7\n\2\2<=\5\4\3\2=>\7\13")
+        buf.write("\2\2>\r\3\2\2\2?@\5\20\t\2@A\7\23\2\2AB\5\20\t\2B\17\3")
+        buf.write("\2\2\2CH\5\22\n\2DE\7\21\2\2EG\5\22\n\2FD\3\2\2\2GJ\3")
+        buf.write("\2\2\2HF\3\2\2\2HI\3\2\2\2I\21\3\2\2\2JH\3\2\2\2KP\5\24")
+        buf.write("\13\2LM\7\22\2\2MO\5\24\13\2NL\3\2\2\2OR\3\2\2\2PN\3\2")
+        buf.write("\2\2PQ\3\2\2\2Q\23\3\2\2\2RP\3\2\2\2SZ\7\24\2\2TZ\7\30")
+        buf.write("\2\2UV\7\f\2\2VW\5\20\t\2WX\7\r\2\2XZ\3\2\2\2YS\3\2\2")
+        buf.write("\2YT\3\2\2\2YU\3\2\2\2Z\25\3\2\2\2[`\5\30\r\2\\]\7\17")
+        buf.write("\2\2]_\5\30\r\2^\\\3\2\2\2_b\3\2\2\2`^\3\2\2\2`a\3\2\2")
+        buf.write("\2a\27\3\2\2\2b`\3\2\2\2ch\5\32\16\2de\7\16\2\2eg\5\32")
+        buf.write("\16\2fd\3\2\2\2gj\3\2\2\2hf\3\2\2\2hi\3\2\2\2i\31\3\2")
+        buf.write("\2\2jh\3\2\2\2km\7\25\2\2lk\3\2\2\2mp\3\2\2\2no\3\2\2")
+        buf.write("\2nl\3\2\2\2ox\3\2\2\2pn\3\2\2\2qy\5\16\b\2ry\7\26\2\2")
+        buf.write("sy\7\30\2\2tu\7\f\2\2uv\5\26\f\2vw\7\r\2\2wy\3\2\2\2x")
+        buf.write("q\3\2\2\2xr\3\2\2\2xs\3\2\2\2xt\3\2\2\2y\33\3\2\2\2\13")
+        buf.write("$+HPY`hnx")
         return buf.getvalue()
 
 
@@ -64,10 +63,9 @@ class IMPParser ( Parser ):
     sharedContextCache = PredictionContextCache()
 
     literalNames = [ "<INVALID>", "';'", "':='", "'if'", "'then'", "'else'", 
-                     "'fi'", "'while'", "'do'", "'end'", "'('", "')'", "'\u00E2\u02C6\u00A7'", 
-                     "'\u00E2\u02C6\u00A8'", "<INVALID>", "<INVALID>", "<INVALID>", 
-                     "<INVALID>", "<INVALID>", "'\u00C2\u00AC'", "<INVALID>", 
-                     "'skip'" ]
+                     "'fi'", "'while'", "'do'", "'od'", "'('", "')'", "'and'", 
+                     "'or'", "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
+                     "<INVALID>", "'not'", "<INVALID>", "'skip'" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
@@ -424,7 +422,6 @@ class IMPParser ( Parser ):
 
         localctx = IMPParser.Cond_stmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 8, self.RULE_cond_stmt)
-        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 47
@@ -436,17 +433,11 @@ class IMPParser ( Parser ):
             self.match(IMPParser.T__3)
             self.state = 50
             self.series()
+            self.state = 51
+            self.match(IMPParser.T__4)
+            self.state = 52
+            self.series()
             self.state = 53
-            self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            if _la==IMPParser.T__4:
-                self.state = 51
-                self.match(IMPParser.T__4)
-                self.state = 52
-                self.series()
-
-
-            self.state = 55
             self.match(IMPParser.T__5)
         except RecognitionException as re:
             localctx.exception = re
@@ -498,16 +489,16 @@ class IMPParser ( Parser ):
         self.enterRule(localctx, 10, self.RULE_loop)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 57
+            self.state = 55
             self.match(IMPParser.T__6)
 
-            self.state = 58
+            self.state = 56
             self.logical_expr()
-            self.state = 59
+            self.state = 57
             self.match(IMPParser.T__7)
-            self.state = 60
+            self.state = 58
             self.series()
-            self.state = 61
+            self.state = 59
             self.match(IMPParser.T__8)
         except RecognitionException as re:
             localctx.exception = re
@@ -561,11 +552,11 @@ class IMPParser ( Parser ):
         self.enterRule(localctx, 12, self.RULE_compar)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 63
+            self.state = 61
             self.expr()
-            self.state = 64
+            self.state = 62
             self.match(IMPParser.RELATION)
-            self.state = 65
+            self.state = 63
             self.expr()
         except RecognitionException as re:
             localctx.exception = re
@@ -623,17 +614,17 @@ class IMPParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 67
+            self.state = 65
             self.term()
-            self.state = 72
+            self.state = 70
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==IMPParser.WEAKOP:
-                self.state = 68
+                self.state = 66
                 self.match(IMPParser.WEAKOP)
-                self.state = 69
+                self.state = 67
                 self.term()
-                self.state = 74
+                self.state = 72
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -693,17 +684,17 @@ class IMPParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 75
+            self.state = 73
             self.elem()
-            self.state = 80
+            self.state = 78
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==IMPParser.STRONGOP:
-                self.state = 76
+                self.state = 74
                 self.match(IMPParser.STRONGOP)
-                self.state = 77
+                self.state = 75
                 self.elem()
-                self.state = 82
+                self.state = 80
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -758,26 +749,26 @@ class IMPParser ( Parser ):
         localctx = IMPParser.ElemContext(self, self._ctx, self.state)
         self.enterRule(localctx, 18, self.RULE_elem)
         try:
-            self.state = 89
+            self.state = 87
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [IMPParser.NUMBER]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 83
+                self.state = 81
                 self.match(IMPParser.NUMBER)
                 pass
             elif token in [IMPParser.VARNAME]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 84
+                self.state = 82
                 self.match(IMPParser.VARNAME)
                 pass
             elif token in [IMPParser.T__9]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 85
+                self.state = 83
                 self.match(IMPParser.T__9)
-                self.state = 86
+                self.state = 84
                 self.expr()
-                self.state = 87
+                self.state = 85
                 self.match(IMPParser.T__10)
                 pass
             else:
@@ -839,17 +830,17 @@ class IMPParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 91
+            self.state = 89
             self.logical_term()
-            self.state = 96
+            self.state = 94
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==IMPParser.WEAKBOOL:
-                self.state = 92
+                self.state = 90
                 self.match(IMPParser.WEAKBOOL)
-                self.state = 93
+                self.state = 91
                 self.logical_term()
-                self.state = 98
+                self.state = 96
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -909,17 +900,17 @@ class IMPParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 99
+            self.state = 97
             self.logical_elem()
-            self.state = 104
+            self.state = 102
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==IMPParser.STRONGBOOL:
-                self.state = 100
+                self.state = 98
                 self.match(IMPParser.STRONGBOOL)
-                self.state = 101
+                self.state = 99
                 self.logical_elem()
-                self.state = 106
+                self.state = 104
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -985,41 +976,41 @@ class IMPParser ( Parser ):
         self.enterRule(localctx, 24, self.RULE_logical_elem)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 110
+            self.state = 108
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,8,self._ctx)
+            _alt = self._interp.adaptivePredict(self._input,7,self._ctx)
             while _alt!=1 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1+1:
-                    self.state = 107
+                    self.state = 105
                     self.match(IMPParser.NEG) 
-                self.state = 112
+                self.state = 110
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,8,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,7,self._ctx)
 
-            self.state = 120
+            self.state = 118
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,9,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,8,self._ctx)
             if la_ == 1:
-                self.state = 113
+                self.state = 111
                 self.compar()
                 pass
 
             elif la_ == 2:
-                self.state = 114
+                self.state = 112
                 self.match(IMPParser.BOOL)
                 pass
 
             elif la_ == 3:
-                self.state = 115
+                self.state = 113
                 self.match(IMPParser.VARNAME)
                 pass
 
             elif la_ == 4:
-                self.state = 116
+                self.state = 114
                 self.match(IMPParser.T__9)
-                self.state = 117
+                self.state = 115
                 self.logical_expr()
-                self.state = 118
+                self.state = 116
                 self.match(IMPParser.T__10)
                 pass
 

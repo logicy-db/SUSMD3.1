@@ -13,23 +13,20 @@ class CustomIMPVisitor(ParseTreeVisitor):
         '-': 'SUB',
         '*': 'MULT',
         '/': 'DIV',
-        '≠': ['EQ', 'NEG'],
+        '<>': ['EQ', 'NEG'],
         '=<': 'LE',
         '>=': ['LE', 'NEG', 'EQ', 'OR'],
         '=': 'EQ',
         '<': ['EQ', 'NEG', 'LE', 'AND'],
         '>': ['LE', 'NEG'],
-        'NOT': 'NEG',
     }
 
     # Get AM command
     def createCommand(self, elem1, elem2, operator):
-        elem1 = self.pushOrFetch(elem1)
-        elem2 = self.pushOrFetch(elem2)
         operator = str(operator)
 
         if operator in ['>=', '<']:
-            return "%s : %s : %s : %s : %s : %s : %s : %s" % (
+            return ' : '.join([
                 elem1,
                 elem2,
                 self.ops[operator][0],
@@ -38,30 +35,29 @@ class CustomIMPVisitor(ParseTreeVisitor):
                 elem2,
                 self.ops[operator][2],
                 self.ops[operator][3]
-            )
+            ])
 
-        if operator in ['≠', '>']:
-            return "%s : %s : %s : %s" % (
+        if operator in ['<>', '>']:
+            return ' : '.join([
                 elem1,
                 elem2,
                 self.ops[operator][0],
                 self.ops[operator][1]
-            )
+            ])
 
-        return "%s : %s : %s" % (
+        return ' : '.join([
             elem1,
             elem2,
             self.ops[operator]
-        )
-    
+        ])
+
     # Get appropriate PUSH or FETCH command based on the terminal
-    def pushOrFetch(self, elem):
+    def pushFetchBool(self, elem):
         elem = str(elem)
+        if elem in ('false', 'true'):
+            return eval(elem.capitalize())
         return "PUSH(%s)" % elem if elem.isnumeric() else "FETCH(%s)" % elem
-    
-    def getCode(self, elem):
-        return "kek"
-    
+
     # Visit a parse tree produced by IMPParser#progr.
     def visitProgr(self, ctx: IMPParser.ProgrContext):
         self.visitChildren(ctx)
@@ -69,12 +65,12 @@ class CustomIMPVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by IMPParser#series.
     def visitSeries(self, ctx: IMPParser.SeriesContext):
-        from gen.IMPParser import IMPParser # TODO: fix the import
+        from gen.IMPParser import IMPParser
 
         program = []
         for i in range(ctx.getChildCount()):
             if not isinstance(ctx.getChild(i), TerminalNode):
-                program.append(str(self.visit(ctx.getChild(i))))
+                program.append(self.visit(ctx.getChild(i)))
             else:
                 program.append(str(ctx.getChild(i)))
 
@@ -86,71 +82,61 @@ class CustomIMPVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by IMPParser#stmt.
     def visitStmt(self, ctx: IMPParser.StmtContext):
+        if isinstance(ctx.getChild(0), TerminalNode):
+            return str(ctx.getChild(0))
+
         return self.visitChildren(ctx)
 
     # Visit a parse tree produced by IMPParser#assign_stmt.
     def visitAssign_stmt(self, ctx: IMPParser.Assign_stmtContext):
-        if isinstance(ctx.getChild(0), TerminalNode):
-            rightPart = str(ctx.getChild(0))
-        else:
-            rightPart = self.visit(ctx.getChild(2))
-
         return "%s : STORE(%s)" % (
-            self.pushOrFetch(ctx.getChild(0)),
-            rightPart
+            self.visit(ctx.getChild(2)),
+            ctx.getChild(0),
         )
 
     # Visit a parse tree produced by IMPParser#cond_stmt.
     def visitCond_stmt(self, ctx: IMPParser.Cond_stmtContext):
         # cond_stmt : 'if' (logical_expr) 'then' series ('else' series)? 'fi';
-
-        return "bcode(%s) : BRANCH(code(%s), code(%s))" % (
-            str(self.visit(ctx.getChild(1))),
-            str(self.visit(ctx.getChild(3))),
-            str(self.visit(ctx.getChild(5)))
+        return "%s : BRANCH(%s, %s)" % (
+            self.visit(ctx.getChild(1)),
+            self.visit(ctx.getChild(3)),
+            self.visit(ctx.getChild(5))
         )
-        
-        # exeCond = self.visit(ctx.getChild(1))
-        # 
-        # if exeCond:
-        #     # if true do series
-        #     return self.visit(ctx.getChild(3))
-        # else:
-        #     if ctx.getChild(5) != None:
-        #         return self.visit(ctx.getChild(5))
-        
 
     # Visit a parse tree produced by IMPParser#loop.
     def visitLoop(self, ctx: IMPParser.LoopContext):
-        return self.visitChildren(ctx)
+        return "LOOP (%s, %s)" % (
+            self.visit(ctx.getChild(1)),
+            self.visit(ctx.getChild(3)),
+        )
 
     # Visit a parse tree produced by IMPParser#compar.
     def visitCompar(self, ctx: IMPParser.ComparContext):
-        return self.visitChildren(ctx)
+        return self.createCommand(
+            self.visit(ctx.getChild(0)),
+            self.visit(ctx.getChild(2)),
+            ctx.getChild(1)
+        )
 
     # Visit a parse tree produced by IMPParser#expr.
     def visitExpr(self, ctx: IMPParser.ExprContext):
         if ctx.getChildCount() == 3:
-            elem1 = self.visit(ctx.getChild(0))
-            elem2 = self.visit(ctx.getChild(2))
-
-            return self.createCommand(elem1, elem2, ctx.getChild(1))
-
-        if isinstance(ctx.getChild(0), TerminalNode):
-            return str(ctx.getChild(0))
+            return self.createCommand(
+                self.visit(ctx.getChild(0)),
+                self.visit(ctx.getChild(2)),
+                ctx.getChild(1)
+            )
 
         return self.visitChildren(ctx)
 
     # Visit a parse tree produced by IMPParser#term.
     def visitTerm(self, ctx: IMPParser.TermContext):
         if ctx.getChildCount() == 3:
-            elem1 = self.visit(ctx.getChild(0))
-            elem2 = self.visit(ctx.getChild(2))
-
-            return self.createCommand(elem1, elem2, ctx.getChild(1))
-
-        if isinstance(ctx.getChild(0), TerminalNode):
-            return str(ctx.getChild(0))
+            return self.createCommand(
+                self.visit(ctx.getChild(0)),
+                self.visit(ctx.getChild(2)),
+                ctx.getChild(1)
+            )
 
         return self.visitChildren(ctx)
 
@@ -158,21 +144,50 @@ class CustomIMPVisitor(ParseTreeVisitor):
     def visitElem(self, ctx: IMPParser.ElemContext):
         if ctx.getChildCount() != 1:
             # if contains parenthesis
-            return self.visit(ctx.getChild(1))  # visitExpr)
+            return self.visit(ctx.getChild(1))  # visitExpr
 
-        return str(ctx.getChild(0))
+        return self.pushFetchBool(ctx.getChild(0))
 
     # Visit a parse tree produced by IMPParser#logical_expr.
     def visitLogical_expr(self, ctx: IMPParser.Logical_exprContext):
+        if ctx.getChildCount() == 3:
+            return self.createCommand(
+                self.visit(ctx.getChild(0)),
+                self.visit(ctx.getChild(2)),
+                ctx.getChild(1)
+            )
+
         return self.visitChildren(ctx)
 
     # Visit a parse tree produced by IMPParser#logical_term.
     def visitLogical_term(self, ctx: IMPParser.Logical_termContext):
+        if ctx.getChildCount() == 3:
+            return self.createCommand(
+                self.visit(ctx.getChild(0)),
+                self.visit(ctx.getChild(2)),
+                ctx.getChild(1)
+            )
+
         return self.visitChildren(ctx)
 
     # Visit a parse tree produced by IMPParser#logical_elem.
     def visitLogical_elem(self, ctx: IMPParser.Logical_elemContext):
-        return self.visitChildren(ctx)
+        if str(ctx.getChild(0)) == 'NOT':
+            return "%s : NOT" % self.visitChildren(ctx)
+
+        # Parenthesis
+        if str(ctx.getChild(0)) == '(':
+            # (logical_expr)
+            return "(%s)" % self.visitChildren(ctx)
+
+        if not isinstance(ctx.getChild(0), TerminalNode):
+            # compar handling
+            elem = self.visitChildren(ctx)
+        else:
+            # Processing the single value that is BOOL, VARNAME
+            elem = self.pushFetchBool(ctx.getChild(0))
+
+        return elem
 
 
 del IMPParser
