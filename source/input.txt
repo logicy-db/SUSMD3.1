@@ -1,4 +1,3 @@
-y:=13; 
 while x<>y do 
     if x=<y then y:=y-x 
     else x:=x-y fi 

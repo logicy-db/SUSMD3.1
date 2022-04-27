@@ -16,9 +16,9 @@ def main(filename):
     """
     Drawing the tree (for debugging)
     """
-    treeString = Trees.toStringTree(tree, None, parser)
-    tree = nltk.Tree.fromstring(treeString)
-    tree.draw()
+    # treeString = Trees.toStringTree(tree, None, parser)
+    # tree = nltk.Tree.fromstring(treeString)
+    # tree.draw()
 
 if __name__ == '__main__':
     main('source/input.txt')

@@ -19,6 +19,8 @@ class CustomIMPVisitor(ParseTreeVisitor):
         '=': 'EQ',
         '<': ['EQ', 'NEG', 'LE', 'AND'],
         '>': ['LE', 'NEG'],
+        'and': 'AND',
+        'or': 'OR',
     }
 
     # Get AM command
@@ -55,7 +57,7 @@ class CustomIMPVisitor(ParseTreeVisitor):
     def pushFetchBool(self, elem):
         elem = str(elem)
         if elem in ('false', 'true'):
-            return eval(elem.capitalize())
+            return elem.upper()
         return "PUSH(%s)" % elem if elem.isnumeric() else "FETCH(%s)" % elem
 
     # Visit a parse tree produced by IMPParser#progr.
@@ -172,13 +174,32 @@ class CustomIMPVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by IMPParser#logical_elem.
     def visitLogical_elem(self, ctx: IMPParser.Logical_elemContext):
-        if str(ctx.getChild(0)) == 'NOT':
-            return "%s : NOT" % self.visitChildren(ctx)
+        if str(ctx.getChild(0)) == 'not':
+            notCounter = 0
+            for i in range(ctx.getChildCount()):
+                if str(ctx.getChild(i)) != 'not':
+                    break
+                else:
+                    notCounter += 1
+
+            if str(ctx.getChild(notCounter)) == '(':  # next element after latest NOT
+                # NOT with parenthesis
+                elemPos = notCounter+1
+            else:
+                elemPos = notCounter
+
+            elem = ctx.getChild(elemPos)
+            if isinstance(ctx.getChild(elemPos), TerminalNode):
+                # NOT terminal
+                return "%s%s" % (self.pushFetchBool(elem), ' : NOT'*notCounter)
+            else:
+                # NOT node
+                return "%s%s" % (self.visit(elem), ' : NOT'*notCounter)
 
         # Parenthesis
         if str(ctx.getChild(0)) == '(':
             # (logical_expr)
-            return "(%s)" % self.visitChildren(ctx)
+            return "(%s)" % self.visit(ctx.getChild(1))
 
         if not isinstance(ctx.getChild(0), TerminalNode):
             # compar handling
