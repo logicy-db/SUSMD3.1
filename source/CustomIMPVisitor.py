@@ -199,7 +199,7 @@ class CustomIMPVisitor(ParseTreeVisitor):
         # Parenthesis
         if str(ctx.getChild(0)) == '(':
             # (logical_expr)
-            return "(%s)" % self.visit(ctx.getChild(1))
+            return "%s" % self.visit(ctx.getChild(1))
 
         if not isinstance(ctx.getChild(0), TerminalNode):
             # compar handling
